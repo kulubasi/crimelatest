@@ -1,0 +1,90 @@
+{% comment %} {% extends 'crimehome.html' %}
+
+{% block content %}
+
+{% for messsage in messages%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Message!</strong> {{ message }}.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
+<h3 class="text-center"> Welcome to the crime management system</h3>
+{% endblock %}
+ {% endcomment %}
+
+ <html>
+
+<head>
+    <title></title>
+    {% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-5.2.0-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-5.2.0-dist/css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" bg-light>
+        <div class="container-fluid">
+            <!-- <marquee width="60%" direction="up" height="100px"> -->
+            <marquee width="60%" direction="right">
+            <a class="navbar-brand" href="#">Crime Management System</a>
+            </marquee>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+             
+            
+            <li class="nav-item">
+                <a class="nav-link fw-bold" href="{% url 'individualreport' %}" >Report Case</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fst-italic" href="signin">Login</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link fst-italic" href="signup">Sign up</a>
+            </li> -->
+            {% comment %} <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+            </li> {% endcomment %}
+            </ul>
+        </div>
+        </div>
+
+        <div>
+    </nav>
+
+    <div class="container-fluid">
+        <br>
+        <div class="row">
+            <div class="col-12">
+                
+                <div style="" class="text-center">
+                    <!-- <img src="{% static 'images/crime.png' %}" style="width:80%; height:auto; "> -->
+                    <form class="d-flex" role="search" action="{% url 'followup' %}" method="POST">
+                        {% csrf_token %}
+                        <input class="form-control me-2" type="search" placeholder="Search by Reference number" name="mysearch" aria-label="Search">
+                        <!-- {{ form.as_p}} -->
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+
+    <footer class="page-footer font-small blue foot">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-white text-center py-3 bg-dark">© 2022 Copyright:
+         <a class="fst-italic">"Combatting crime"</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    
+    <script src="{% static 'bootstrap-5.2.0-dist/js/bootstrap.min.js' %}"> </script>
+</body>
+ </html>

@@ -1,0 +1,67 @@
+{% extends 'subadmin.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="subadmin">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Registered Users</li>
+  </ol>
+</nav>
+
+<h3 class="text-center">Registered Users</h3>
+    <table id="users" class="table table-stripped" >
+    	<thead>
+            <tr>
+            	<th>ID</th>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Sub county</th>
+                <th>District</th>
+                <th>Duty Station</th>
+                <th>Contact</th>
+                <th>Responsibility</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                {% for u in us %}
+                <td>{{u.id}}</td>
+                <td>{{u.username}}</td>
+                <td>{{u.first_name}}</td>
+                <td>{{u.last_name}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.subcounty}}</td>
+                <td>{{u.district}}</td>
+                <td>{{u.dutystation}}</td>
+                <td>{{u.contact}}</td>
+                {% if u.is_admin  == True %}
+                	<td>Administrator</td>
+                {% elif u.is_police_officer  == True %}
+                	<td>Police Officer</td>
+                {% elif u.is_court_Officer  == True %}
+                	<td>Court Officer</td>
+                {% endif %}
+                
+            </tr>
+                {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>id</th>
+                <th>User name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Sub county</th>
+                <th>District</th>
+                <th>Duty Station</th>
+                <th>Contact</th>
+                <th>Responsibility</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

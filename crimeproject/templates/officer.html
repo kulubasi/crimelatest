@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-5.2.0-dist/css/bootstrap.min.css' %}">
+	{% comment %} my css file {% endcomment %}
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-5.2.0-dist/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<style type="text/css">
+		a{
+			text-decoration: none;
+		}
+	</style>
+	
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg bg-light">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#">Crime Management</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+
+	        <!-- </li> -->
+	        {% if not user.is_authenticated %}
+	        
+			<li class="nav-item itm">
+				<a class="nav-link  " href="signin">Signin</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="signup">Signup</a>
+			</li>
+
+			{% else %}
+      <li class="nav-item">
+        <a class="nav-link text-success " href="">Welcome {{user.first_name}}</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-success " href="officer">Home</a>
+      </li>
+
+				<li class="nav-item itm">
+					<a class="nav-link " href="{% url 'regcrime' %}" >Register Crime</a>
+				</li>
+        
+				<li class="nav-item">
+					<a class="nav-link " href="reported">View reported cases</a>
+				</li>
+				
+				
+				<li class="nav-item">
+					<a class="nav-link " href="signout">Logout</a>
+				</li>
+			{% endif %}
+
+			
+			
+	        
+	      </ul>
+	      
+	    </div>
+	  </div>
+	</nav>
+		<div class="container">
+
+
+			
+
+
+		<div class="row ">
+		
+			<div class="col text-center"><br>
+
+				
+				</div>
+
+				
+		</div>
+		{% block content %}
+
+		<div class="row bucards" id="bucards">
+			<div class="col-12 col-lg-6 col-md-6 bucardscols">
+			<a href="{% url 'regcrime' %}"><div class="card bg-info" style="width:;">
+				<!-- <img src="{% static 'images/crime1.jpg'%}" class="card-img-top" alt="..."> -->
+				<div class="card-body text-center">
+					<i class="bi bi-briefcase bucardscircle text-white" style="font-size: 60px;"></i>
+				  <h5 class="card-title text-white">Register Crime</h5>
+				  <!-- <a href= class="btn btn-light">Here</a> -->
+				</div>
+			  </div></a>
+			</div>
+			<div class="col-12 col-lg-6 col-md-6 bucardscols">
+			<a href="reported">
+				<div class="card bg-success" style="width:;">
+				<!-- <img src="{% static 'images/crime1.jpg'%}" class="card-img-top" alt="..."> -->
+				<div class="card-body text-center">
+					<i class="bi bi-briefcase bucardscircle text-white" style="font-size: 60px;"></i>
+				  <h5 class="card-title text-white">View Reported Cases</h5>
+				  {% comment %} <p class="card-text">Register User.</p> {% endcomment %}
+				  <!-- <a href="reported" class="btn btn-light">Here</a> -->
+				</div>
+			  </div></a>
+			</div>
+
+			<div class="col-12 col-lg-6 col-md-6 bucardscols">
+			  <div class="card bg-warning" style="width: ;">
+				<!-- <img src="{% static 'images/crime2.jpg'%}" class="card-img-top" alt="..."> -->
+				<div class="card-body text-center">
+					<i class="text-white bi bi-x-diamond bucardscircle" style="font-size: 60px;"></i>
+				  <h5 class="card-title">Registered Officers</h5>
+				  {% comment %} <p class="card-text">View reported Cases.</p> {% endcomment %}
+				  <a href="" class="btn btn-light" id="regtwigger" >View</a>
+				</div>
+			  </div>
+			</div>
+		
+
+			
+			<div class="col-12 col-lg-6 col-md-6 bucardscols ">
+			  <a href="ready2forward">
+			  	<div class="card bg-danger">
+				<!-- <img src="{% static 'images/crime2.jpg'%}" class="card-img-top" alt="..."> -->
+				<div class="card-body text-center ">
+				  
+				  	<div class="bucardscols">
+				  	<i class="text-white bi bi-exclamation-triangle bucardscircle" style="font-size: 58px;" ></i>
+				  </div>
+				  
+				  <h5 class="card-text text-white">Forward Case<br> to Court.</h5>
+				  <!-- <a href="#registeredoff" class="btn btn-light">To Court</a> -->
+				</div>
+			  </div>
+			</a>
+			</div>
+
+			<div class="col-12 ">
+			  <a href="forwarded">
+			  	<div class="card bg-danger">
+				<!-- <img src="{% static 'images/crime2.jpg'%}" class="card-img-top" alt="..."> -->
+				<div class="card-body text-center ">
+				  
+				  	<div class="bucardscols">
+				  	<i class="text-white bi bi-fast-forward bucardscircle" style="font-size: 58px;" ></i>
+				  </div>
+				  
+				  <h5 class="card-text text-white">Forwarded Cases</h5>
+				  <!-- <a href="#registeredoff" class="btn btn-light">To Court</a> -->
+				</div>
+			  </div>
+			</a>
+			</div>
+		
+		</div>
+
+		
+		<br><br><br>
+	<div class="registeredoff" id="registeredoff">
+	<h4 class="text-center">Registered Police Officers</h4>
+		<!-- <table class="table table-stripped " id="regoffs">
+		  <thead>
+		    <tr>
+		      <th scope="col">Id</th>
+		      <th scope="col">Title</th>
+		      <th scope="col">First name</th>
+		      <th scope="col">Last name</th>
+		      <th scope="col">Duty Station</th>
+		      <th scope="col">Contact</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+          {% for of in off %}
+          	{% if of.is_police_officer%}
+		          <td>{{of.id}}</td>
+		          <td>{{of.username}}</td>
+		          <td>{{of.first_name}}</td>
+		          <td>{{of.last_name}}</td>
+		          <td>{{of.dutystation}}</td>
+		          <td>{{of.contact}}</td>
+		          <td>{{st.Officerincharge}}</td>
+		         {% endif %}
+          
+      </tr>
+          {% endfor %}
+		  </tbody>
+		</table> -->
+		<table id="regoffs" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Duty Station</th>
+                <th>District</th>
+                <th>Sub County</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for x in off %}
+                {% if x.is_police_officer %}
+                <td>{{x.id}}</td>
+                <td>{{x.first_name}}</td>
+                <td>{{x.last_name}}</td>
+                <td>{{x.dutystation}}</td>
+                <td>{{x.district}}</td>
+                <td>{{x.subcounty}}</td>
+                <td>{{x.contact}}</td>
+                <td><button class="btn btn-danger"> Alert Officer</button></td>
+                
+
+            </tr>
+            		{% endif %}
+            		{% endfor %}
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Duty Station</th>
+                <th>District</th>
+                <th>Sub County</th>
+                <th>Contact</th>
+                <th>Action</th>
+                
+            </tr>
+        </tfoot>
+    </table>
+	</div>
+	{% endblock %}
+		
+
+
+		  </div><br><br><br><br>
+		  <footer class="page-footer font-small blue">
+	}
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-white text-center py-3 bg-dark">© 2022 Copyright:
+         <a class="fst-italic">"Combatting crime"</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+
+
+	
+	<script src="{% static 'bootstrap-5.2.0-dist/js/bootstrap.min.js' %}"> </script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<script>
+		$(document).ready(function () {
+    $('#regoffs').DataTable();
+});
+	</script>
+	<script type="text/javascript">
+		let regtwigger = document.getElementById('regtwigger');
+		let registeredoff = document.getElementById('registeredoff');
+		let cards = document.getElementById('bucards');
+
+
+		regtwigger.addEventListener('click',(e)=>{
+			e.preventDefault();
+	    registeredoff.classList.add('active')
+	    cards.classList.add('active')
+	    // supphome.classList.add('active')
+	    // document.body.classList.add('overflow')
+  })
+
+
+	</script>
+
+</body>
+
+</html>

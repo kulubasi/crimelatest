@@ -1,0 +1,51 @@
+.signinbody{
+    /* background : #f5683d; */
+    padding-top: 25vh;
+
+}
+
+form{
+    background: white;
+}
+
+.form-container{
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px 0px;
+}
+
+.formimage{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 110px;
+    left: 47%;
+}
+
+.itm{
+    float: right;
+}
+
+.page-footer{
+    padding-bottom: 0px;
+}
+
+.registeredoff{display: none;}
+
+.registeredoff.active{display: block;}
+.bucards.active{display: none;}
+
+.foot{padding-top: 50em;}
+.bucardscols{padding-bottom: 20px;}
+
+.bucardscrcle{
+    display: inline-block;
+    height: 50%;
+    width: 19%;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: -1;
+}
+a{text-decoration: none;}
+
+
